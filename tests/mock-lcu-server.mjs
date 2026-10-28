@@ -137,6 +137,17 @@ const server = https.createServer(
 
     if (url.pathname === '/lol-patch/v1/game-version') return send(200, '26.20.1');
 
+    if (url.pathname === '/lol-game-data/assets/v1/champion-summary.json') {
+      return send(200, [
+        { id: -1, name: '无' },
+        { id: 100, name: '阿狸' },
+        { id: 101, name: '亚索' },
+        { id: 102, name: '锐雯' },
+        { id: 103, name: '劫' },
+        { id: 104, name: '阿卡丽' },
+      ]);
+    }
+
     if (url.pathname === '/lol-summoner/v1/summoners') {
       const name = url.searchParams.get('name') ?? '';
       const idx = NAMES.indexOf(name);

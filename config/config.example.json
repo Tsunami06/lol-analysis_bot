@@ -1,0 +1,13 @@
+{
+  "group": "开黑群",
+  "schedule": "12:00",
+  "tone": 3,
+  "sendMode": "wechat",
+  "wechatDelayMs": 600,
+  "playersFile": "config/players.json",
+  "count": 100,
+  "deepScan": false,
+  "lockfile": null,
+  "lcuPort": null,
+  "lcuToken": null
+}

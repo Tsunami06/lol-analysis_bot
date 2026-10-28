@@ -1,6 +1,8 @@
 node_modules/
 fixtures/
+data/
 config/players.json
+config/config.json
 .tmp/
 *.log
 .DS_Store

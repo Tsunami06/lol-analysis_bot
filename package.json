@@ -1,14 +1,18 @@
 {
   "name": "lol-daily-bot",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "英雄联盟开黑群每日战报 bot（国服 LCU）",
+  "description": "英雄联盟开黑群每日战报 bot（国服 LCU + 微信）",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
     "p0": "node scripts/p0-lcu-spike.mjs",
-    "selftest": "node scripts/p0-lcu-spike.mjs --selftest"
+    "selftest": "node scripts/p0-lcu-spike.mjs --selftest",
+    "probe": "node src/index.mjs probe",
+    "once": "node src/index.mjs once",
+    "dry": "node src/index.mjs once --dry-run",
+    "daemon": "node src/index.mjs daemon"
   }
 }
