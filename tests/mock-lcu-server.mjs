@@ -41,6 +41,8 @@ function buildGame({ id, queueId, mode, creation, duration, winnerTeam }) {
   for (const team of teams) {
     team.puuids.forEach((puuid, idx) => {
       const win = team.teamId === winnerTeam;
+      const isOurs = team.teamId === 100;
+      const hasPenta = isOurs && id === 1001 && idx === 3;
       participants.push({
         participantId,
         teamId: team.teamId,
@@ -53,10 +55,29 @@ function buildGame({ id, queueId, mode, creation, duration, winnerTeam }) {
           assists: 8 + idx,
           win,
           totalDamageDealtToChampions: 20000 + idx * 1500,
+          physicalDamageDealtToChampions: 12000 + idx * 800,
+          magicDamageDealtToChampions: 7000 + idx * 600,
+          trueDamageDealtToChampions: 1000 + idx * 100,
+          totalDamageTaken: 18000 + idx * 900,
+          totalHeal: 3000 + idx * 200,
+          timeCCingOthers: 20 + idx,
           goldEarned: 12000 + idx * 500,
           totalMinionsKilled: 150 + idx * 10,
           neutralMinionsKilled: 20,
           visionScore: 25 + idx,
+          wardsPlaced: 8 + idx,
+          wardsKilled: 2 + idx,
+          tripleKills: 0,
+          quadraKills: 0,
+          pentaKills: hasPenta ? 1 : 0,
+          firstBloodKill: isOurs && id === 1001 && idx === 0,
+          totalPlayerScore: 60 + idx * 3,
+          playerAugment1: id === 1002 ? 1356 : 0,
+          playerAugment2: id === 1002 ? 1391 : 0,
+          playerAugment3: id === 1002 ? 1320 : 0,
+          playerAugment4: id === 1002 ? 1322 : 0,
+          playerAugment5: 0,
+          playerAugment6: 0,
         },
       });
       identities.push({
@@ -145,6 +166,15 @@ const server = https.createServer(
         { id: 102, name: '锐雯' },
         { id: 103, name: '劫' },
         { id: 104, name: '阿卡丽' },
+      ]);
+    }
+
+    if (url.pathname === '/lol-game-data/assets/v1/cherry-augments.json') {
+      return send(200, [
+        { id: 1356, name: '巨人杀手' },
+        { id: 1391, name: '珠光护手' },
+        { id: 1320, name: '虚幻武器' },
+        { id: 1322, name: '大地苏醒' },
       ]);
     }
 

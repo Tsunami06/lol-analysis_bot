@@ -39,9 +39,26 @@ export function statOf(game, player) {
     assists: s.assists ?? 0,
     win: Boolean(s.win),
     damage: s.totalDamageDealtToChampions ?? 0,
+    physicalDamage: s.physicalDamageDealtToChampions ?? 0,
+    magicDamage: s.magicDamageDealtToChampions ?? 0,
+    trueDamage: s.trueDamageDealtToChampions ?? 0,
+    damageTaken: s.totalDamageTaken ?? 0,
+    heal: s.totalHeal ?? 0,
+    ccTime: s.timeCCingOthers ?? 0,
     gold: s.goldEarned ?? 0,
     cs: (s.totalMinionsKilled ?? 0) + (s.neutralMinionsKilled ?? 0),
     vision: s.visionScore ?? 0,
+    wardsPlaced: s.wardsPlaced ?? 0,
+    wardsKilled: s.wardsKilled ?? 0,
+    tripleKills: s.tripleKills ?? 0,
+    quadraKills: s.quadraKills ?? 0,
+    pentaKills: s.pentaKills ?? 0,
+    firstBlood: Boolean(s.firstBloodKill),
+    // 海克斯大乱斗的强化符文，最多 6 个，0 表示空位
+    augments: [1, 2, 3, 4, 5, 6]
+      .map((i) => s[`playerAugment${i}`])
+      .filter((id) => typeof id === 'number' && id > 0),
+    officialScore: typeof s.totalPlayerScore === 'number' ? s.totalPlayerScore : null,
   };
 }
 

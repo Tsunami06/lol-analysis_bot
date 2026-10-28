@@ -54,8 +54,8 @@ function narrate(titles, tone) {
   return feeder && feeder.deathsPerGame >= 6 ? `${base}${feeder.nickname} 这死亡率，建议改行当提款机。` : base;
 }
 
-export function renderReport({ dateLabel, analysis, champions, tone = 3 }) {
-  const { games, standings, titles } = analysis;
+export function renderReport({ dateLabel, analysis, champions, augments, tone = 3 }) {
+  const { games, standings, titles, highlights } = analysis;
 
   if (!games.length) {
     return `【${dateLabel} 开黑战报】\n昨天群里没人开黑，战绩板空空如也。`;
@@ -85,10 +85,21 @@ export function renderReport({ dateLabel, analysis, champions, tone = 3 }) {
       const rows = [...g.rows].sort((a, b) => b.score - a.score);
       rows.forEach((r, i) => {
         const icon = i === 0 ? '🔥' : i === rows.length - 1 ? '💀' : r.score >= 50 ? '👍' : '😐';
+        const extra =
+          bucket.key === 'aram'
+            ? ` · 承伤 ${fmtDamage(r.damageTaken)}`
+            : ` · 参团 ${pct(r.participation)}`;
         lines.push(
           `    ${icon} ${r.nickname} · ${championName(champions, r.championId)} · ` +
-            `${r.kills}/${r.deaths}/${r.assists} · 伤害 ${fmtDamage(r.damage)}(${pct(r.damageShare)}) · 评分 ${r.score}`,
+            `${r.kills}/${r.deaths}/${r.assists} · 伤害 ${fmtDamage(r.damage)}(${pct(r.damageShare)})${extra} · 评分 ${r.score}`,
         );
+
+        if (bucket.key === 'aram' && r.augments?.length) {
+          const names = r.augments.map((id) => augments?.get?.(id) ?? `#${id}`);
+          const shown = names.slice(0, 3).join(' / ');
+          const more = names.length > 3 ? ` +${names.length - 3}` : '';
+          lines.push(`       强化：${shown}${more}`);
+        }
       });
     }
     lines.push('');
@@ -105,6 +116,9 @@ export function renderReport({ dateLabel, analysis, champions, tone = 3 }) {
     }
     if (titles.feeder && titles.feeder.deathsPerGame >= 4) {
       lines.push(`🩸 送财童子：${titles.feeder.nickname}（场均 ${titles.feeder.deathsPerGame.toFixed(1)} 死）`);
+    }
+    if (highlights?.length) {
+      lines.push(`✨ 名场面：${highlights.map((h) => `${h.nickname} ${h.text}`).join(' · ')}`);
     }
     lines.push('');
     lines.push(`一句话：${narrate(titles, tone)}`);

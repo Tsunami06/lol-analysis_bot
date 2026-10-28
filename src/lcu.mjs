@@ -209,3 +209,17 @@ export async function championMap(get) {
     return new Map();
   }
 }
+
+/** 海克斯强化 id -> 名称 */
+export async function augmentMap(get) {
+  try {
+    const list = await get('/lol-game-data/assets/v1/cherry-augments.json');
+    const map = new Map();
+    for (const a of list ?? []) {
+      if (a?.id) map.set(a.id, a.name ?? a.nameTRA ?? `#${a.id}`);
+    }
+    return map;
+  } catch {
+    return new Map();
+  }
+}

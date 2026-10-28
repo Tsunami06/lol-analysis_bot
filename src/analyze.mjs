@@ -14,7 +14,7 @@ const QUEUES = {
 const ARAM_QUEUES = new Set([450, 720, 2400]);
 
 export function modeOf(game) {
-  if (ARAM_QUEUES.has(game.queueId) || game.gameMode === 'ARAM') {
+  if (ARAM_QUEUES.has(game.queueId) || game.gameMode === 'ARAM' || game.gameMode === 'KIWI') {
     return { bucket: 'aram', label: QUEUES[game.queueId] ?? '大乱斗' };
   }
   return { bucket: 'rift', label: QUEUES[game.queueId] ?? (game.gameMode === 'CLASSIC' ? '峡谷' : '其他') };
@@ -67,9 +67,23 @@ export function analyze(games) {
         deaths: stat.deaths,
         assists: stat.assists,
         damage: stat.damage,
+        physicalDamage: stat.physicalDamage,
+        magicDamage: stat.magicDamage,
+        trueDamage: stat.trueDamage,
+        damageTaken: stat.damageTaken,
+        heal: stat.heal,
+        ccTime: stat.ccTime,
         gold: stat.gold,
         cs: stat.cs,
         vision: stat.vision,
+        wardsPlaced: stat.wardsPlaced,
+        wardsKilled: stat.wardsKilled,
+        tripleKills: stat.tripleKills,
+        quadraKills: stat.quadraKills,
+        pentaKills: stat.pentaKills,
+        firstBlood: stat.firstBlood,
+        augments: stat.augments,
+        officialScore: stat.officialScore,
         kda,
         damageShare: stat.damage / damage,
         participation: (stat.kills + stat.assists) / kills,
@@ -147,7 +161,50 @@ export function analyze(games) {
     }))
     .sort((a, b) => b.avgScore - a.avgScore);
 
-  return { games: analyzed, standings, titles: pickTitles(standings) };
+  return {
+    games: analyzed,
+    standings,
+    titles: pickTitles(standings),
+    highlights: pickHighlights(analyzed),
+  };
+}
+
+function pickHighlights(games) {
+  const list = [];
+  let topDamage = null;
+  for (const g of games) {
+    for (const r of g.rows) {
+      if (r.pentaKills > 0) {
+        list.push({ kind: 'penta', nickname: r.nickname, championId: r.championId, text: '五杀' });
+      } else if (r.quadraKills > 0) {
+        list.push({ kind: 'quadra', nickname: r.nickname, championId: r.championId, text: '四杀' });
+      }
+      if (r.firstBlood) {
+        list.push({ kind: 'firstBlood', nickname: r.nickname, championId: r.championId, text: '一血' });
+      }
+      if (!topDamage || r.damage > topDamage.damage) topDamage = r;
+    }
+  }
+  if (topDamage) {
+    list.push({
+      kind: 'damage',
+      nickname: topDamage.nickname,
+      championId: topDamage.championId,
+      text: `单局最高伤害 ${Math.round(topDamage.damage / 1000)}k`,
+    });
+  }
+
+  const seen = new Set();
+  const rank = { penta: 0, quadra: 1, firstBlood: 2, damage: 3 };
+  return list
+    .filter((h) => {
+      const key = `${h.kind}:${h.nickname}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .sort((a, b) => rank[a.kind] - rank[b.kind])
+    .slice(0, 3);
 }
 
 function pickTitles(standings) {

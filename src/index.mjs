@@ -9,7 +9,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { ROOT, loadConfig, loadPlayers } from './config.mjs';
-import { connect, championMap } from './lcu.mjs';
+import { connect, championMap, augmentMap } from './lcu.mjs';
 import { resolvePlayers, collectWindow } from './collect.mjs';
 import { analyze } from './analyze.mjs';
 import { renderReport } from './report.mjs';
@@ -79,11 +79,13 @@ async function buildReport({ dateLabel, config, log = console.log }) {
   });
 
   const champions = await championMap(get);
+  const augments = await augmentMap(get);
   const analysis = analyze(games);
   const text = renderReport({
     dateLabel: prettyLabel(dateLabel),
     analysis,
     champions,
+    augments,
     tone: config.tone,
   });
 
@@ -139,9 +141,10 @@ async function probe() {
     deep: config.deepScan,
   });
   const champions = await championMap(get);
+  const augments = await augmentMap(get);
   console.log(`✓ 已连接（${source}）`);
   console.log(`  账号：${me.gameName ?? me.displayName}#${me.tagLine ?? ''}  Lv.${me.summonerLevel ?? '?'}`);
-  console.log(`  英雄数据：${champions.size} 个`);
+  console.log(`  英雄数据：${champions.size} 个，强化符文：${augments.size} 个`);
   const players = loadPlayers(config.playersFile);
   const resolved = await resolvePlayers(get, players, console.log);
   console.log(`  解析成功：${resolved.length}/${players.length}`);

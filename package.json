@@ -1,6 +1,6 @@
 {
   "name": "lol-daily-bot",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "英雄联盟开黑群每日战报 bot（国服 LCU + 微信）",
