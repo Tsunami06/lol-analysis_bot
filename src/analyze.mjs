@@ -1,6 +1,7 @@
 /**
  * 分析：单局指标、同队内 z-score 评分、当日称号
  */
+import { teamsOf } from './collect.mjs';
 
 const QUEUES = {
   400: '匹配', 420: '单双排', 430: '匹配', 440: '灵活排位',
@@ -45,51 +46,34 @@ export function analyze(games) {
 
     const teamKills = new Map();
     const teamDamage = new Map();
+    const teamGold = new Map();
     for (const p of game.participants ?? []) {
       teamKills.set(p.teamId, (teamKills.get(p.teamId) ?? 0) + (p.stats?.kills ?? 0));
       teamDamage.set(
         p.teamId,
         (teamDamage.get(p.teamId) ?? 0) + (p.stats?.totalDamageDealtToChampions ?? 0),
       );
+      teamGold.set(p.teamId, (teamGold.get(p.teamId) ?? 0) + (p.stats?.goldEarned ?? 0));
     }
 
     const rows = entries.map(({ player, stat }) => {
       const kills = teamKills.get(stat.teamId) || 1;
       const damage = teamDamage.get(stat.teamId) || 1;
+      const gold = teamGold.get(stat.teamId) || 1;
       const kda = (stat.kills + stat.assists) / Math.max(1, stat.deaths);
       return {
+        ...stat, // 单局所有原始指标都在这里了
         nickname: player.nickname,
         player,
-        championId: stat.championId,
-        teamId: stat.teamId,
-        win: stat.win,
-        kills: stat.kills,
-        deaths: stat.deaths,
-        assists: stat.assists,
-        damage: stat.damage,
-        physicalDamage: stat.physicalDamage,
-        magicDamage: stat.magicDamage,
-        trueDamage: stat.trueDamage,
-        damageTaken: stat.damageTaken,
-        heal: stat.heal,
-        ccTime: stat.ccTime,
-        gold: stat.gold,
-        cs: stat.cs,
-        vision: stat.vision,
-        wardsPlaced: stat.wardsPlaced,
-        wardsKilled: stat.wardsKilled,
-        tripleKills: stat.tripleKills,
-        quadraKills: stat.quadraKills,
-        pentaKills: stat.pentaKills,
-        firstBlood: stat.firstBlood,
-        augments: stat.augments,
-        officialScore: stat.officialScore,
         kda,
         damageShare: stat.damage / damage,
         participation: (stat.kills + stat.assists) / kills,
+        goldShare: stat.gold / gold,
         goldPerMin: stat.gold / durationMin,
         csPerMin: stat.cs / durationMin,
         deathsPerMin: stat.deaths / durationMin,
+        damagePerMin: stat.damage / durationMin,
+        damageTakenPerMin: stat.damageTaken / durationMin,
       };
     });
 
@@ -113,11 +97,13 @@ export function analyze(games) {
       gameId: game.gameId,
       queueId: game.queueId,
       gameMode: game.gameMode,
+      gameVersion: game.gameVersion ?? null,
       creation: game.gameCreation,
       duration: game.gameDuration ?? 0,
       mode,
       win: rows[0]?.win ?? false,
       rows,
+      teams: teamsOf(game),
       teamSize: rows.length,
     });
   }

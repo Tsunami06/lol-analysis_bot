@@ -135,6 +135,7 @@ start-bot.cmd
 | `wechatDelayMs` | 粘贴后等待，机器慢就调大 | 600 |
 | `playersFile` | 玩家配置路径 | config/players.json |
 | `count` | 每人回溯多少场 | 100 |
+| `queues` | 只统计哪些队列，`null` 为全部；例如 `[440]` 只发灵活组排 | null |
 | `deepScan` | 找不到客户端时全盘扫描 | false |
 | `lockfile` / `lcuPort` / `lcuToken` | 手动指定客户端连接 | null |
 

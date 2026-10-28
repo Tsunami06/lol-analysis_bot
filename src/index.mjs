@@ -9,9 +9,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { ROOT, loadConfig, loadPlayers } from './config.mjs';
-import { connect, championMap, augmentMap } from './lcu.mjs';
-import { resolvePlayers, collectWindow } from './collect.mjs';
-import { analyze } from './analyze.mjs';
+import {
+  connect, championMap, augmentMap, itemMap, spellMap, perkMap, fetchGame,
+} from './lcu.mjs';
+import { resolvePlayers, collectWindow, statOf, teamsOf } from './collect.mjs';
+import { analyze, modeOf } from './analyze.mjs';
 import { renderReport } from './report.mjs';
 import { sendToWechat } from './publish.mjs';
 
@@ -75,6 +77,7 @@ async function buildReport({ dateLabel, config, log = console.log }) {
     count: config.count,
     start: window.start,
     end: window.end,
+    queues: config.queues,
     log,
   });
 
@@ -151,6 +154,104 @@ async function probe() {
   console.log(`  sidecar：${config.sendMode}（群「${config.group}」）`);
 }
 
+/**
+ * 单局全量检查：把 LCU 能给的字段全打出来，并把原始 payload 存到 data/raw/{gameId}.json
+ *   node src/index.mjs game 901113996532
+ */
+async function inspect(gameIdArg) {
+  const gameId = Number(gameIdArg);
+  if (!gameId) throw new Error('用法：node src/index.mjs game <gameId>');
+
+  const config = loadConfig();
+  const { get, source } = await connect({
+    lockfile: config.lockfile,
+    port: config.lcuPort,
+    token: config.lcuToken,
+    deep: config.deepScan,
+  });
+  const [champs, items, spells, perks] = await Promise.all([
+    championMap(get), itemMap(get), spellMap(get), perkMap(get),
+  ]);
+  const game = await fetchGame(get, gameId);
+
+  const rawDir = path.join(ROOT, 'data', 'raw');
+  fs.mkdirSync(rawDir, { recursive: true });
+  const rawFile = path.join(rawDir, `${gameId}.json`);
+  fs.writeFileSync(rawFile, JSON.stringify(game, null, 2));
+
+  const k = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(Math.round(n)));
+  const pct = (x) => `${Math.round((Number.isFinite(x) ? x : 0) * 100)}%`;
+  const dur = (s) => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
+  const name = (m, id) => (id ? m.get(id) ?? `#${id}` : '—');
+  const meta = new Date(game.gameCreation + CN).toISOString().slice(0, 16).replace('T', ' ');
+  const teams = teamsOf(game);
+  const label = modeOf(game).label;
+
+  const totals = new Map();
+  for (const p of game.participants ?? []) {
+    const t = totals.get(p.teamId) ?? { kills: 0, damage: 0, gold: 0 };
+    t.kills += p.stats?.kills ?? 0;
+    t.damage += p.stats?.totalDamageDealtToChampions ?? 0;
+    t.gold += p.stats?.goldEarned ?? 0;
+    totals.set(p.teamId, t);
+  }
+
+  console.log(`连接：${source}`);
+  console.log(`=== 对局 ${gameId} ===`);
+  console.log(`${meta} · ${label}(${game.queueId}) · 时长 ${dur(game.gameDuration)} · 版本 ${game.gameVersion ?? '?'} · 地图 ${game.mapId}`);
+  console.log('');
+  for (const t of teams) {
+    const tot = totals.get(t.teamId) ?? { kills: 0, damage: 0, gold: 0 };
+    console.log(
+      `队伍 ${t.teamId} ${t.win ? '（胜）' : '（负）'}：击杀 ${tot.kills} · 经济 ${k(tot.gold)} · 对英雄伤害 ${k(tot.damage)} · `
+      + `塔 ${t.towerKills} · 兵营 ${t.inhibitorKills} · 小龙 ${t.dragonKills} · 大龙 ${t.baronKills} · 峡谷先锋 ${t.riftHeraldKills}`,
+    );
+    console.log(
+      `  首杀 ${t.firstBlood ? '✓' : '✗'} · 首塔 ${t.firstTower ? '✓' : '✗'} · 首龙 ${t.firstDragon ? '✓' : '✗'} · `
+      + `首大龙 ${t.firstBaron ? '✓' : '✗'} · 首兵营 ${t.firstInhibitor ? '✓' : '✗'}`,
+    );
+    const bans = t.bans.filter((b) => b > 0).map((b) => name(champs, b));
+    if (bans.length) console.log(`  BAN：${bans.join(' / ')}`);
+  }
+  console.log('');
+
+  const ordered = [...(game.participants ?? [])].sort((a, b) => a.teamId - b.teamId || a.participantId - b.participantId);
+  for (const p of ordered) {
+    const identity = (game.participantIdentities ?? []).find((x) => x.participantId === p.participantId)?.player ?? {};
+    const s = p.stats ?? {};
+    const tl = p.timeline ?? {};
+    const tot = totals.get(p.teamId) ?? { kills: 1, damage: 1, gold: 1 };
+    const kda = ((s.kills ?? 0) + (s.assists ?? 0)) / Math.max(1, s.deaths ?? 0);
+    const itemNames = [s.item0, s.item1, s.item2, s.item3, s.item4, s.item5]
+      .filter((x) => x > 0).map((x) => name(items, x));
+    const trinket = name(items, s.item6);
+    const perkNames = [p.stats?.perk0, p.stats?.perk1, p.stats?.perk2, p.stats?.perk3, p.stats?.perk4, p.stats?.perk5]
+      .filter((x) => x > 0).map((x) => name(perks, x));
+
+    console.log(`▍${identity.gameName ?? '?'}#${identity.tagLine ?? ''}  ${name(champs, p.championId)} Lv.${s.champLevel ?? '?'}  ${tl.lane ?? ''}/${tl.role ?? ''}`);
+    console.log(`   KDA ${s.kills}/${s.deaths}/${s.assists} (${kda.toFixed(2)}) · 参团 ${pct(((s.kills ?? 0) + (s.assists ?? 0)) / Math.max(1, tot.kills))} · 伤害 ${k(s.totalDamageDealtToChampions ?? 0)}(${pct((s.totalDamageDealtToChampions ?? 0) / Math.max(1, tot.damage))})`);
+    console.log(`   经济 ${k(s.goldEarned ?? 0)}(${pct((s.goldEarned ?? 0) / Math.max(1, tot.gold))}) · 花费 ${k(s.goldSpent ?? 0)} · CS ${s.totalMinionsKilled ?? 0}+${s.neutralMinionsKilled ?? 0} · 视野 ${s.visionScore ?? 0} · 真眼 ${s.visionWardsBoughtInGame ?? 0}`);
+    console.log(`   伤害构成：物理 ${k(s.physicalDamageDealtToChampions ?? 0)} / 魔法 ${k(s.magicDamageDealtToChampions ?? 0)} / 真实 ${k(s.trueDamageDealtToChampions ?? 0)}`);
+    console.log(`   承伤 ${k(s.totalDamageTaken ?? 0)}（物理 ${k(s.physicalDamageTaken ?? 0)} / 魔法 ${k(s.magicalDamageTaken ?? 0)} / 真实 ${k(s.trueDamageTaken ?? 0)}）· 减伤 ${k(s.damageSelfMitigated ?? 0)} · 治疗 ${k(s.totalHeal ?? 0)} · 控制 ${((s.totalTimeCrowdControlDealt ?? 0)).toFixed(0)}s`);
+    console.log(`   目标物：拆塔伤害 ${k(s.damageDealtToTurrets ?? 0)} · 目标伤害 ${k(s.damageDealtToObjectives ?? 0)} · 推塔 ${s.turretKills ?? 0} · 兵营 ${s.inhibitorKills ?? 0}`);
+    console.log(`   多杀：双 ${s.doubleKills ?? 0} 三 ${s.tripleKills ?? 0} 四 ${s.quadraKills ?? 0} 五 ${s.pentaKills ?? 0} · 最大连杀 ${s.largestKillingSpree ?? 0} · 最长存活 ${s.longestTimeSpentLiving ?? 0}s · 最大暴击 ${s.largestCriticalStrike ?? 0}`);
+    console.log(`   出装：${itemNames.join(' / ') || '—'}${trinket && trinket !== '—' ? ` （饰品 ${trinket}）` : ''}`);
+    console.log(`   召唤师技能：${[p.spell1Id, p.spell2Id].filter((x) => x > 0).map((x) => name(spells, x)).join(' / ')}`);
+    console.log(`   符文：${name(perks, s.perkPrimaryStyle)} / ${name(perks, s.perkSubStyle)} · ${perkNames.join(' / ')}`);
+    if (s.playerAugment1) {
+      const aug = [1, 2, 3, 4, 5, 6].map((i) => s[`playerAugment${i}`]).filter((x) => x > 0);
+      console.log(`   海克斯强化：${aug.length} 个（id ${aug.join(',')}）`);
+    }
+    const goldCurve = tl.goldPerMinDeltas ?? {};
+    const curve = Object.entries(goldCurve).slice(0, 5).map(([band, v]) => `${band}:${k(v)}`).join(' ');
+    if (curve) console.log(`   经济曲线：${curve}`);
+    console.log('');
+  }
+
+  console.log(`官方评分 totalPlayerScore：${ordered.map((p) => `${(game.participantIdentities ?? []).find((x) => x.participantId === p.participantId)?.player?.gameName ?? '?'}=${p.stats?.totalPlayerScore ?? '-'}`).join('  ')}`);
+  console.log(`原始 payload（全部 118 个字段）：${rawFile}`);
+}
+
 function minutesOf(hhmm) {
   const [h, m] = String(hhmm).split(':').map(Number);
   return h * 60 + m;
@@ -193,7 +294,7 @@ async function daemon() {
   setInterval(tick, 30_000);
 }
 
-(mode === 'daemon' ? daemon() : mode === 'probe' ? probe() : runOnce({
+(mode === 'daemon' ? daemon() : mode === 'probe' ? probe() : mode === 'game' ? inspect(argv[1]) : runOnce({
   dateLabel: typeof opt('date') === 'string' ? opt('date') : undefined,
   dryRun: flag('dry-run'),
   force: flag('force'),

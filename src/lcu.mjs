@@ -55,12 +55,75 @@ function fromProcess() {
 }
 
 function scanKnown() {
-  for (const dir of CANDIDATE_DIRS) {
+  for (const dir of installDirs()) {
     try {
       const p = path.join(dir, 'lockfile');
-      if (fs.existsSync(p)) return readLockfile(p);
+      if (fs.existsSync(p)) {
+        const lf = readLockfile(p);
+        if (lf.port) return lf;
+      }
     } catch {
-      /* 跳过 */
+      /* 空 lockfile 或格式异常，跳过 */
+    }
+  }
+  return null;
+}
+
+/**
+ * 国服 WeGame 版的两处坑：
+ * 1. 安装目录是自定义的（注册表 HKCU\SOFTWARE\Tencent\LOL\InstallPath 才准）；
+ * 2. 客户端的 lockfile 可能是 0 字节，进程参数也未必读得到（WMI 需要权限）。
+ * 兜底：从最近一次 LeagueClientUx 日志的启动参数里取 --app-port / --remoting-auth-token。
+ */
+function installDirs() {
+  const dirs = new Set(CANDIDATE_DIRS);
+  try {
+    const out = execFileSync('reg', ['query', 'HKCU\\SOFTWARE\\Tencent\\LOL', '/v', 'InstallPath'], {
+      encoding: 'utf8',
+      timeout: 5_000,
+      windowsHide: true,
+    });
+    const m = /InstallPath\s+REG_SZ\s+(.+)/.exec(out);
+    if (m) dirs.add(m[1].trim());
+  } catch {
+    /* 非腾讯客户端或读不到注册表 */
+  }
+  return [...dirs];
+}
+
+export function fromLogs(dirs = installDirs()) {
+  for (const dir of dirs) {
+    let best = null;
+    try {
+      for (const name of fs.readdirSync(path.join(dir, 'LeagueClient'))) {
+        if (!/_LeagueClientUx\.log$/.test(name)) continue;
+        const full = path.join(dir, 'LeagueClient', name);
+        const mtimeMs = fs.statSync(full).mtimeMs;
+        if (!best || mtimeMs > best.mtimeMs) best = { full, mtimeMs };
+      }
+    } catch {
+      continue;
+    }
+    if (!best) continue;
+    // 日志十分钟没更新，说明客户端早关了，端口已经不可信
+    if (Date.now() - best.mtimeMs > 10 * 60_000) continue;
+    try {
+      const raw = fs.readFileSync(best.full, 'utf8');
+      // 客户端正常退出后日志不会再写，但十分钟内 mtime 看着还新鲜，得看尾巴
+      if (/Exiting ux|Shutting down CEF/.test(raw.slice(-4096))) continue;
+      const head = raw.slice(0, 64 * 1024);
+      const port = /--app-port=(\d+)/.exec(head)?.[1];
+      const token = /--remoting-auth-token=([\w-]+)/.exec(head)?.[1];
+      if (port && token) {
+        return {
+          port: Number(port),
+          password: token,
+          protocol: 'https',
+          source: `客户端日志 ${path.basename(best.full)}`,
+        };
+      }
+    } catch {
+      /* 日志读不了就换下一个目录 */
     }
   }
   return null;
@@ -153,6 +216,7 @@ export async function connect({ lockfile, port, token, deep = false } = {}) {
   if (port && token) push({ port: Number(port), password: token, protocol: 'https', source: '命令行参数' });
   if (lockfile) push(readLockfile(lockfile));
   push(fromProcess());
+  push(fromLogs());
   push(scanKnown());
   if (deep) push(deepScan());
 
@@ -196,8 +260,12 @@ export async function fetchMatches(get, puuid, count = 100) {
   return Array.isArray(res?.games) ? res.games : (res?.games?.games ?? []);
 }
 
-/** 单局完整详情：列表接口可能只带被查询者本人，需要它补齐 10 人 */
-export async function fetchGameDetail(get, gameId) {
+/**
+ * 单局完整详情：/matches 列表接口在国服只返回「自己」那一条 participant，
+ * 队伍其他人全被裁掉，导致伤害占比/参团率的分母只有自己（出现 100%、171%）。
+ * 这里按 gameId 补拉完整对局（10 人 participant + identity）。
+ */
+export async function fetchGame(get, gameId) {
   return get(`/lol-match-history/v1/games/${gameId}`);
 }
 
@@ -227,4 +295,50 @@ export async function augmentMap(get) {
   } catch {
     return new Map();
   }
+}
+
+/** 装备 id -> 名称 */
+export async function itemMap(get) {
+  try {
+    const list = await get('/lol-game-data/assets/v1/items.json');
+    const map = new Map();
+    for (const it of list ?? []) {
+      if (it?.id) map.set(it.id, it.name ?? `#${it.id}`);
+    }
+    return map;
+  } catch {
+    return new Map();
+  }
+}
+
+/** 召唤师技能 id -> 名称 */
+export async function spellMap(get) {
+  try {
+    const list = await get('/lol-game-data/assets/v1/summoner-spells.json');
+    const map = new Map();
+    for (const s of list ?? []) {
+      if (s?.id) map.set(s.id, s.name ?? `#${s.id}`);
+    }
+    return map;
+  } catch {
+    return new Map();
+  }
+}
+
+/** 符文 id -> 名称（含基石、小符文、符文系） */
+export async function perkMap(get) {
+  const map = new Map();
+  try {
+    const list = await get('/lol-game-data/assets/v1/perks.json');
+    for (const p of list ?? []) if (p?.id) map.set(p.id, p.name ?? `#${p.id}`);
+  } catch {
+    /* 忽略 */
+  }
+  try {
+    const styles = await get('/lol-game-data/assets/v1/perkstyles.json');
+    for (const s of styles?.styles ?? []) if (s?.id) map.set(s.id, s.name ?? `#${s.id}`);
+  } catch {
+    /* 忽略 */
+  }
+  return map;
 }

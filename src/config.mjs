@@ -13,6 +13,8 @@ const DEFAULTS = {
   playersFile: path.join(ROOT, 'config', 'players.json'),
   count: 100,
   deepScan: false,
+  // 只统计哪些队列；null = 全部。440 灵活组排 / 420 单双排 / 450 极地大乱斗 / 2400 海克斯大乱斗
+  queues: null,
   lockfile: null,
   lcuPort: null,
   lcuToken: null,
