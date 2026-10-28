@@ -1,0 +1,6 @@
+node_modules/
+fixtures/
+config/players.json
+.tmp/
+*.log
+.DS_Store
