@@ -177,3 +177,22 @@ node scripts\p0-lcu-spike.mjs --date 2026-10-27
 它会打印队列号分布，用来确认「海克斯大乱斗」的 `queueId`。该模式已确认为 `queueId 2400` / `gameMode KIWI`（依据 Akari 的国服抓包数据），`src/analyze.mjs` 已内置。
 
 `tests/mock-lcu-server.mjs` 是假客户端，本地回归用。
+
+## 真实数据回放
+
+akari 仓库里有一份真实国服抓包（`2026-05-16-tencent-hn10`，含 15 种队列、完整 10 人数据和每分钟时间线）。不用连客户端，直接用它对 bot 做离线验证：
+
+```bat
+:: 列出可用对局
+node tests\replay-real-fixtures.mjs --list
+
+:: 回放海克斯大乱斗（含真实强化符文 id）
+node tests\replay-real-fixtures.mjs q_2400
+
+:: 回放一局排位
+node tests\replay-real-fixtures.mjs q_420
+```
+
+默认从同级目录 `../akari/...` 读数据，可以用 `AKARI_FIXTURES` 指向别处。
+
+这份数据暴露了一个真实问题：**列表接口可能只返回被查询者本人**（抓包里的 `current-summoner-matches.json` 就是每局 1 个 participant）。所以 `collect.mjs` 现在会在 `participants < 10` 时自动回退到 `/lol-match-history/v1/games/{gameId}` 拉完整详情，否则“队伍合计”会把参团率和伤害占比算成 100%。

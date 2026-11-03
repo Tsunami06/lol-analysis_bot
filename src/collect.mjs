@@ -1,7 +1,7 @@
 /**
  * 采集：解析玩家、拉取对局、按 gameId 合并同队对局
  */
-import { findSummoner, fetchMatches } from './lcu.mjs';
+import { findSummoner, fetchMatches, fetchGameDetail } from './lcu.mjs';
 
 export function identityOf(game, player) {
   const ids = game.participantIdentities ?? [];
@@ -83,6 +83,26 @@ export async function resolvePlayers(get, players, log = () => {}) {
 
 export async function collectWindow(get, players, { count, start, end, log = () => {} }) {
   const byGame = new Map();
+  const detailCache = new Map();
+
+  // 有些版本/路径返回的对局只带被查询者本人；补齐成 10 人再统计队伍合计
+  async function ensureFullGame(game) {
+    if ((game.participants?.length ?? 0) >= 10) return game;
+    if (detailCache.has(game.gameId)) return detailCache.get(game.gameId);
+
+    try {
+      const full = await fetchGameDetail(get, game.gameId);
+      if ((full?.participants?.length ?? 0) > (game.participants?.length ?? 0)) {
+        detailCache.set(game.gameId, full);
+        return full;
+      }
+    } catch (e) {
+      log(`  ! ${game.gameId} 拉详情失败，按现有数据处理：${e.message}`);
+    }
+
+    detailCache.set(game.gameId, game);
+    return game;
+  }
 
   for (const player of players) {
     let games;
@@ -92,8 +112,9 @@ export async function collectWindow(get, players, { count, start, end, log = () 
       log(`  ✗ ${player.nickname} 拉取失败：${e.message}`);
       continue;
     }
-    for (const game of games) {
-      if (game.gameCreation < start || game.gameCreation >= end) continue;
+    for (const raw of games) {
+      if (raw.gameCreation < start || raw.gameCreation >= end) continue;
+      const game = await ensureFullGame(raw);
       if (!byGame.has(game.gameId)) byGame.set(game.gameId, { game, entries: [] });
       const stat = statOf(game, player);
       if (stat) byGame.get(game.gameId).entries.push({ player, stat });

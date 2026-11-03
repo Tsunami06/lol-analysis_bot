@@ -196,6 +196,11 @@ export async function fetchMatches(get, puuid, count = 100) {
   return Array.isArray(res?.games) ? res.games : (res?.games?.games ?? []);
 }
 
+/** 单局完整详情：列表接口可能只带被查询者本人，需要它补齐 10 人 */
+export async function fetchGameDetail(get, gameId) {
+  return get(`/lol-match-history/v1/games/${gameId}`);
+}
+
 /** 英雄 id -> 中文名（取客户端本地化数据，国服即中文） */
 export async function championMap(get) {
   try {
