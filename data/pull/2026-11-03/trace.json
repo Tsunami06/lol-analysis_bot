@@ -1,0 +1,729 @@
+{
+  "generatedAt": "2026-11-03T17:18:44.798Z",
+  "generatedAtCN": "2026-11-04 01:18:44 +08",
+  "dateLabel": "2026-11-03",
+  "window": {
+    "start": 1793635200000,
+    "end": 1793721600000,
+    "startCN": "2026-11-03 00:00:00 +08",
+    "endCN": "2026-11-04 00:00:00 +08"
+  },
+  "lcu": {
+    "source": "命令行参数",
+    "port": 12516,
+    "account": "成都夺冠#22520",
+    "summonerLevel": 1566,
+    "puuid": "b088e0a0-a96e-540d-b777-801d00444e72",
+    "gameVersion": "16.21.8325350+branch.releases-16-21.code.publictencent.content.release"
+  },
+  "endpoints": {
+    "notFound": "/lol-summoner/v1/summoners?name=<name>",
+    "matches": "/lol-match-history/v1/products/lol/<puuid>/matches?begIndex=0&endIndex=<count>",
+    "game": "/lol-match-history/v1/games/<gameId>"
+  },
+  "players": [
+    {
+      "nickname": "成都夺冠",
+      "summoner": "成都夺冠#22520",
+      "gameName": "成都夺冠",
+      "tagLine": "22520",
+      "puuid": "b088e0a0-a96e-540d-b777-801d00444e72",
+      "listCount": 101,
+      "listOldest": "2026-10-27 21:23:56 +08",
+      "listNewest": "2026-11-04 00:41:18 +08",
+      "listCoversWindowStart": true,
+      "inWindow": [
+        {
+          "gameId": 901122160653,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793721101946,
+          "creationCN": "2026-11-03 23:51:41 +08",
+          "duration": 699
+        },
+        {
+          "gameId": 901122164039,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793719783704,
+          "creationCN": "2026-11-03 23:29:43 +08",
+          "duration": 1212
+        },
+        {
+          "gameId": 901122161074,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793719548062,
+          "creationCN": "2026-11-03 23:25:48 +08",
+          "duration": 104
+        },
+        {
+          "gameId": 901122104731,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793718582590,
+          "creationCN": "2026-11-03 23:09:42 +08",
+          "duration": 828
+        },
+        {
+          "gameId": 901122107094,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793717463508,
+          "creationCN": "2026-11-03 22:51:03 +08",
+          "duration": 960
+        },
+        {
+          "gameId": 901121871198,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793710340975,
+          "creationCN": "2026-11-03 20:52:20 +08",
+          "duration": 851
+        },
+        {
+          "gameId": 901121794892,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793709099132,
+          "creationCN": "2026-11-03 20:31:39 +08",
+          "duration": 1148
+        },
+        {
+          "gameId": 901121809205,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793708222125,
+          "creationCN": "2026-11-03 20:17:02 +08",
+          "duration": 775
+        },
+        {
+          "gameId": 901121230029,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793642131231,
+          "creationCN": "2026-11-03 01:55:31 +08",
+          "duration": 887
+        },
+        {
+          "gameId": 901121213191,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793641199680,
+          "creationCN": "2026-11-03 01:39:59 +08",
+          "duration": 814
+        },
+        {
+          "gameId": 901121181685,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793640255495,
+          "creationCN": "2026-11-03 01:24:15 +08",
+          "duration": 852
+        },
+        {
+          "gameId": 901121170557,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793638766244,
+          "creationCN": "2026-11-03 00:59:26 +08",
+          "duration": 1369
+        },
+        {
+          "gameId": 901121143827,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793637670510,
+          "creationCN": "2026-11-03 00:41:10 +08",
+          "duration": 1014
+        },
+        {
+          "gameId": 901121144548,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793636590837,
+          "creationCN": "2026-11-03 00:23:10 +08",
+          "duration": 901
+        },
+        {
+          "gameId": 901121118782,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793635544424,
+          "creationCN": "2026-11-03 00:05:44 +08",
+          "duration": 913
+        }
+      ],
+      "queueDist": {
+        "2400": 15
+      }
+    },
+    {
+      "nickname": "蹦么儿",
+      "summoner": "蹦么儿#28777",
+      "gameName": "蹦么儿",
+      "tagLine": "28777",
+      "puuid": "e318c64c-d775-5e6b-9829-f314220e6e2e",
+      "listCount": 101,
+      "listOldest": "2026-10-18 21:32:28 +08",
+      "listNewest": "2026-11-03 20:52:20 +08",
+      "listCoversWindowStart": true,
+      "inWindow": [
+        {
+          "gameId": 901121871198,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793710340975,
+          "creationCN": "2026-11-03 20:52:20 +08",
+          "duration": 851
+        },
+        {
+          "gameId": 901121794892,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793709099132,
+          "creationCN": "2026-11-03 20:31:39 +08",
+          "duration": 1148
+        },
+        {
+          "gameId": 901121809205,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793708222125,
+          "creationCN": "2026-11-03 20:17:02 +08",
+          "duration": 775
+        },
+        {
+          "gameId": 901121144548,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793636590837,
+          "creationCN": "2026-11-03 00:23:10 +08",
+          "duration": 901
+        },
+        {
+          "gameId": 901121118782,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793635544424,
+          "creationCN": "2026-11-03 00:05:44 +08",
+          "duration": 913
+        }
+      ],
+      "queueDist": {
+        "2400": 5
+      }
+    },
+    {
+      "nickname": "烦死了我不想打了",
+      "summoner": "烦死了我不想打了#11246",
+      "gameName": "烦死了我不想打了",
+      "tagLine": "11246",
+      "puuid": "e26fd506-5e89-52bb-a441-927493910635",
+      "listCount": 101,
+      "listOldest": "2026-10-25 01:35:57 +08",
+      "listNewest": "2026-11-03 02:12:34 +08",
+      "listCoversWindowStart": true,
+      "inWindow": [
+        {
+          "gameId": 901121210548,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793643154572,
+          "creationCN": "2026-11-03 02:12:34 +08",
+          "duration": 527
+        },
+        {
+          "gameId": 901121230029,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793642131231,
+          "creationCN": "2026-11-03 01:55:31 +08",
+          "duration": 887
+        },
+        {
+          "gameId": 901121213191,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793641199680,
+          "creationCN": "2026-11-03 01:39:59 +08",
+          "duration": 814
+        },
+        {
+          "gameId": 901121181685,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793640255495,
+          "creationCN": "2026-11-03 01:24:15 +08",
+          "duration": 852
+        },
+        {
+          "gameId": 901121170557,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793638766244,
+          "creationCN": "2026-11-03 00:59:26 +08",
+          "duration": 1369
+        },
+        {
+          "gameId": 901121143827,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793637670510,
+          "creationCN": "2026-11-03 00:41:10 +08",
+          "duration": 1014
+        },
+        {
+          "gameId": 901121144548,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793636590837,
+          "creationCN": "2026-11-03 00:23:10 +08",
+          "duration": 901
+        },
+        {
+          "gameId": 901121118782,
+          "queueId": 2400,
+          "gameMode": "KIWI",
+          "gameCreation": 1793635544424,
+          "creationCN": "2026-11-03 00:05:44 +08",
+          "duration": 913
+        }
+      ],
+      "queueDist": {
+        "2400": 8
+      }
+    },
+    {
+      "nickname": "急了就点一下赞",
+      "summoner": "急了就点一下赞#32458",
+      "gameName": "急了就点一下赞",
+      "tagLine": "32458",
+      "puuid": "15917c7e-7dfb-5c68-8a2e-12a8821d59ed",
+      "listCount": 101,
+      "listOldest": "2026-09-27 13:11:24 +08",
+      "listNewest": "2026-11-02 23:23:32 +08",
+      "listCoversWindowStart": true,
+      "inWindow": [],
+      "queueDist": {}
+    },
+    {
+      "nickname": "Bot",
+      "summoner": "Bot#48428",
+      "gameName": "Bot",
+      "tagLine": "48428",
+      "puuid": "1178e3ef-22b3-5470-a06f-a0813deacce0",
+      "listCount": 101,
+      "listOldest": "2026-10-23 21:14:19 +08",
+      "listNewest": "2026-11-02 23:23:32 +08",
+      "listCoversWindowStart": true,
+      "inWindow": [],
+      "queueDist": {}
+    }
+  ],
+  "assets": {
+    "champions": 254,
+    "augments": 594,
+    "items": 863,
+    "spells": 37
+  },
+  "windowGamesFoundByList": 16,
+  "games": [
+    {
+      "gameId": 901121118782,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 00:05:44 +08",
+      "duration": 913,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠",
+        "蹦么儿",
+        "烦死了我不想打了"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Win"
+        },
+        {
+          "teamId": 200,
+          "win": "Fail"
+        }
+      ]
+    },
+    {
+      "gameId": 901121144548,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 00:23:10 +08",
+      "duration": 901,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠",
+        "蹦么儿",
+        "烦死了我不想打了"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Fail"
+        },
+        {
+          "teamId": 200,
+          "win": "Win"
+        }
+      ]
+    },
+    {
+      "gameId": 901121143827,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 00:41:10 +08",
+      "duration": 1014,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠",
+        "烦死了我不想打了"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Fail"
+        },
+        {
+          "teamId": 200,
+          "win": "Win"
+        }
+      ]
+    },
+    {
+      "gameId": 901121170557,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 00:59:26 +08",
+      "duration": 1369,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠",
+        "烦死了我不想打了"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Win"
+        },
+        {
+          "teamId": 200,
+          "win": "Fail"
+        }
+      ]
+    },
+    {
+      "gameId": 901121181685,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 01:24:15 +08",
+      "duration": 852,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠",
+        "烦死了我不想打了"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Win"
+        },
+        {
+          "teamId": 200,
+          "win": "Fail"
+        }
+      ]
+    },
+    {
+      "gameId": 901121213191,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 01:39:59 +08",
+      "duration": 814,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠",
+        "烦死了我不想打了"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Win"
+        },
+        {
+          "teamId": 200,
+          "win": "Fail"
+        }
+      ]
+    },
+    {
+      "gameId": 901121230029,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 01:55:31 +08",
+      "duration": 887,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠",
+        "烦死了我不想打了"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Win"
+        },
+        {
+          "teamId": 200,
+          "win": "Fail"
+        }
+      ]
+    },
+    {
+      "gameId": 901121210548,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 02:12:34 +08",
+      "duration": 527,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "烦死了我不想打了"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Win"
+        },
+        {
+          "teamId": 200,
+          "win": "Fail"
+        }
+      ]
+    },
+    {
+      "gameId": 901121809205,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 20:17:02 +08",
+      "duration": 775,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠",
+        "蹦么儿"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Fail"
+        },
+        {
+          "teamId": 200,
+          "win": "Win"
+        }
+      ]
+    },
+    {
+      "gameId": 901121794892,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 20:31:39 +08",
+      "duration": 1148,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠",
+        "蹦么儿"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Fail"
+        },
+        {
+          "teamId": 200,
+          "win": "Win"
+        }
+      ]
+    },
+    {
+      "gameId": 901121871198,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 20:52:20 +08",
+      "duration": 851,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠",
+        "蹦么儿"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Fail"
+        },
+        {
+          "teamId": 200,
+          "win": "Win"
+        }
+      ]
+    },
+    {
+      "gameId": 901122107094,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 22:51:03 +08",
+      "duration": 960,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Fail"
+        },
+        {
+          "teamId": 200,
+          "win": "Win"
+        }
+      ]
+    },
+    {
+      "gameId": 901122104731,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 23:09:42 +08",
+      "duration": 828,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Win"
+        },
+        {
+          "teamId": 200,
+          "win": "Fail"
+        }
+      ]
+    },
+    {
+      "gameId": 901122161074,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 23:25:48 +08",
+      "duration": 104,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Win"
+        },
+        {
+          "teamId": 200,
+          "win": "Fail"
+        }
+      ]
+    },
+    {
+      "gameId": 901122164039,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 23:29:43 +08",
+      "duration": 1212,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Fail"
+        },
+        {
+          "teamId": 200,
+          "win": "Win"
+        }
+      ]
+    },
+    {
+      "gameId": 901122160653,
+      "queueId": 2400,
+      "gameMode": "KIWI",
+      "creationCN": "2026-11-03 23:51:41 +08",
+      "duration": 699,
+      "gameVersion": "16.21.832.5350",
+      "listedBy": [
+        "成都夺冠"
+      ],
+      "detailOk": true,
+      "detailErr": null,
+      "participantCount": 10,
+      "teams": [
+        {
+          "teamId": 100,
+          "win": "Fail"
+        },
+        {
+          "teamId": 200,
+          "win": "Win"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1890 @@
+{
+  "checks": [
+    {
+      "name": "[覆盖] 成都夺冠 回溯 100 场仍早于窗口起点",
+      "pass": true,
+      "detail": "最老 2026-10-27 21:23:56 +08，窗口起点 2026-11-03 00:00:00 +08"
+    },
+    {
+      "name": "[覆盖] 成都夺冠 列表未触到 100 场上限",
+      "pass": false,
+      "detail": "实际 101 场（<100），列表已覆盖全部历史，不存在 100 场截断"
+    },
+    {
+      "name": "[覆盖] 蹦么儿 回溯 100 场仍早于窗口起点",
+      "pass": true,
+      "detail": "最老 2026-10-18 21:32:28 +08，窗口起点 2026-11-03 00:00:00 +08"
+    },
+    {
+      "name": "[覆盖] 蹦么儿 列表未触到 100 场上限",
+      "pass": false,
+      "detail": "实际 101 场（<100），列表已覆盖全部历史，不存在 100 场截断"
+    },
+    {
+      "name": "[覆盖] 烦死了我不想打了 回溯 100 场仍早于窗口起点",
+      "pass": true,
+      "detail": "最老 2026-10-25 01:35:57 +08，窗口起点 2026-11-03 00:00:00 +08"
+    },
+    {
+      "name": "[覆盖] 烦死了我不想打了 列表未触到 100 场上限",
+      "pass": false,
+      "detail": "实际 101 场（<100），列表已覆盖全部历史，不存在 100 场截断"
+    },
+    {
+      "name": "[覆盖] 急了就点一下赞 回溯 100 场仍早于窗口起点",
+      "pass": true,
+      "detail": "最老 2026-09-27 13:11:24 +08，窗口起点 2026-11-03 00:00:00 +08"
+    },
+    {
+      "name": "[覆盖] 急了就点一下赞 列表未触到 100 场上限",
+      "pass": false,
+      "detail": "实际 101 场（<100），列表已覆盖全部历史，不存在 100 场截断"
+    },
+    {
+      "name": "[覆盖] Bot 回溯 100 场仍早于窗口起点",
+      "pass": true,
+      "detail": "最老 2026-10-23 21:14:19 +08，窗口起点 2026-11-03 00:00:00 +08"
+    },
+    {
+      "name": "[覆盖] Bot 列表未触到 100 场上限",
+      "pass": false,
+      "detail": "实际 101 场（<100），列表已覆盖全部历史，不存在 100 场截断"
+    },
+    {
+      "name": "[去重] 原始命中条目 = 合并后唯一对局",
+      "pass": true,
+      "detail": "原始 28 条 → 去重 16 局"
+    },
+    {
+      "name": "[去重] gameId 唯一",
+      "pass": true,
+      "detail": "16 个 gameId 互不相同"
+    },
+    {
+      "name": "[完整] 每局详情 10 名 participant",
+      "pass": true,
+      "detail": "16/16 局均为 10 人完整数据"
+    },
+    {
+      "name": "[口径] 纯 2400 海克斯大乱斗",
+      "pass": true,
+      "detail": "队列集合 2400"
+    },
+    {
+      "name": "[组队] 同局本群成员均在同一边",
+      "pass": true,
+      "detail": "16 局无混边"
+    },
+    {
+      "name": "[一致性] 多人都列出的对局时间戳一致",
+      "pass": true,
+      "detail": "以 gameId 为键合并，gameCreation 天然一致"
+    }
+  ],
+  "games": [
+    {
+      "gameId": 901121118782,
+      "queueId": 2400,
+      "creation": "2026-11-03 00:05:44 +08",
+      "duration": 913,
+      "teamId": 100,
+      "squadSize": 3,
+      "squad": [
+        "成都夺冠",
+        "蹦么儿",
+        "烦死了我不想打了"
+      ],
+      "win": true,
+      "scattered": false
+    },
+    {
+      "gameId": 901121144548,
+      "queueId": 2400,
+      "creation": "2026-11-03 00:23:10 +08",
+      "duration": 901,
+      "teamId": 200,
+      "squadSize": 3,
+      "squad": [
+        "成都夺冠",
+        "蹦么儿",
+        "烦死了我不想打了"
+      ],
+      "win": true,
+      "scattered": false
+    },
+    {
+      "gameId": 901121143827,
+      "queueId": 2400,
+      "creation": "2026-11-03 00:41:10 +08",
+      "duration": 1014,
+      "teamId": 200,
+      "squadSize": 2,
+      "squad": [
+        "成都夺冠",
+        "烦死了我不想打了"
+      ],
+      "win": true,
+      "scattered": false
+    },
+    {
+      "gameId": 901121170557,
+      "queueId": 2400,
+      "creation": "2026-11-03 00:59:26 +08",
+      "duration": 1369,
+      "teamId": 200,
+      "squadSize": 2,
+      "squad": [
+        "成都夺冠",
+        "烦死了我不想打了"
+      ],
+      "win": false,
+      "scattered": false
+    },
+    {
+      "gameId": 901121181685,
+      "queueId": 2400,
+      "creation": "2026-11-03 01:24:15 +08",
+      "duration": 852,
+      "teamId": 200,
+      "squadSize": 2,
+      "squad": [
+        "成都夺冠",
+        "烦死了我不想打了"
+      ],
+      "win": false,
+      "scattered": false
+    },
+    {
+      "gameId": 901121213191,
+      "queueId": 2400,
+      "creation": "2026-11-03 01:39:59 +08",
+      "duration": 814,
+      "teamId": 200,
+      "squadSize": 2,
+      "squad": [
+        "成都夺冠",
+        "烦死了我不想打了"
+      ],
+      "win": false,
+      "scattered": false
+    },
+    {
+      "gameId": 901121230029,
+      "queueId": 2400,
+      "creation": "2026-11-03 01:55:31 +08",
+      "duration": 887,
+      "teamId": 100,
+      "squadSize": 2,
+      "squad": [
+        "成都夺冠",
+        "烦死了我不想打了"
+      ],
+      "win": true,
+      "scattered": false
+    },
+    {
+      "gameId": 901121210548,
+      "queueId": 2400,
+      "creation": "2026-11-03 02:12:34 +08",
+      "duration": 527,
+      "teamId": 100,
+      "squadSize": 1,
+      "squad": [
+        "烦死了我不想打了"
+      ],
+      "win": true,
+      "scattered": false
+    },
+    {
+      "gameId": 901121809205,
+      "queueId": 2400,
+      "creation": "2026-11-03 20:17:02 +08",
+      "duration": 775,
+      "teamId": 200,
+      "squadSize": 2,
+      "squad": [
+        "成都夺冠",
+        "蹦么儿"
+      ],
+      "win": true,
+      "scattered": false
+    },
+    {
+      "gameId": 901121794892,
+      "queueId": 2400,
+      "creation": "2026-11-03 20:31:39 +08",
+      "duration": 1148,
+      "teamId": 100,
+      "squadSize": 2,
+      "squad": [
+        "成都夺冠",
+        "蹦么儿"
+      ],
+      "win": false,
+      "scattered": false
+    },
+    {
+      "gameId": 901121871198,
+      "queueId": 2400,
+      "creation": "2026-11-03 20:52:20 +08",
+      "duration": 851,
+      "teamId": 200,
+      "squadSize": 2,
+      "squad": [
+        "成都夺冠",
+        "蹦么儿"
+      ],
+      "win": true,
+      "scattered": false
+    },
+    {
+      "gameId": 901122107094,
+      "queueId": 2400,
+      "creation": "2026-11-03 22:51:03 +08",
+      "duration": 960,
+      "teamId": 200,
+      "squadSize": 1,
+      "squad": [
+        "成都夺冠"
+      ],
+      "win": true,
+      "scattered": false
+    },
+    {
+      "gameId": 901122104731,
+      "queueId": 2400,
+      "creation": "2026-11-03 23:09:42 +08",
+      "duration": 828,
+      "teamId": 100,
+      "squadSize": 1,
+      "squad": [
+        "成都夺冠"
+      ],
+      "win": true,
+      "scattered": false
+    },
+    {
+      "gameId": 901122161074,
+      "queueId": 2400,
+      "creation": "2026-11-03 23:25:48 +08",
+      "duration": 104,
+      "teamId": 100,
+      "squadSize": 1,
+      "squad": [
+        "成都夺冠"
+      ],
+      "win": true,
+      "scattered": false
+    },
+    {
+      "gameId": 901122164039,
+      "queueId": 2400,
+      "creation": "2026-11-03 23:29:43 +08",
+      "duration": 1212,
+      "teamId": 100,
+      "squadSize": 1,
+      "squad": [
+        "成都夺冠"
+      ],
+      "win": false,
+      "scattered": false
+    },
+    {
+      "gameId": 901122160653,
+      "queueId": 2400,
+      "creation": "2026-11-03 23:51:41 +08",
+      "duration": 699,
+      "teamId": 100,
+      "squadSize": 1,
+      "squad": [
+        "成都夺冠"
+      ],
+      "win": false,
+      "scattered": false
+    }
+  ],
+  "enriched": [
+    {
+      "gameId": 901121118782,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 100,
+          "championId": 904,
+          "win": true,
+          "kills": 7,
+          "deaths": 15,
+          "assists": 19,
+          "damage": 29107,
+          "damageTaken": 40195,
+          "gold": 13682,
+          "cs": 41,
+          "vision": 0,
+          "augments": [
+            1071,
+            1073,
+            1053,
+            1151
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            6333,
+            3035,
+            3008,
+            1018,
+            6676,
+            126697,
+            220013
+          ]
+        },
+        {
+          "nickname": "蹦么儿",
+          "teamId": 100,
+          "championId": 555,
+          "win": true,
+          "kills": 10,
+          "deaths": 8,
+          "assists": 28,
+          "damage": 20269,
+          "damageTaken": 29227,
+          "gold": 14083,
+          "cs": 5,
+          "vision": 0,
+          "augments": [
+            1149,
+            1026,
+            3079,
+            1373
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3142,
+            3158,
+            6696,
+            126697,
+            6676,
+            1036,
+            220013
+          ]
+        },
+        {
+          "nickname": "烦死了我不想打了",
+          "teamId": 100,
+          "championId": 8,
+          "win": true,
+          "kills": 19,
+          "deaths": 12,
+          "assists": 21,
+          "damage": 70145,
+          "damageTaken": 62782,
+          "gold": 17513,
+          "cs": 63,
+          "vision": 0,
+          "augments": [
+            1358,
+            1205,
+            1004,
+            1084
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3152,
+            4629,
+            4633,
+            3020,
+            3137,
+            0,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 1,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        },
+        {
+          "teamId": 200,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 2,
+          "firstBlood": true,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        }
+      ]
+    },
+    {
+      "gameId": 901121144548,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 200,
+          "championId": 800,
+          "win": true,
+          "kills": 16,
+          "deaths": 12,
+          "assists": 17,
+          "damage": 27564,
+          "damageTaken": 25992,
+          "gold": 14303,
+          "cs": 14,
+          "vision": 0,
+          "augments": [
+            2103,
+            1349,
+            1138,
+            1180
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3135,
+            3089,
+            0,
+            3008,
+            4645,
+            2503,
+            220013
+          ]
+        },
+        {
+          "nickname": "蹦么儿",
+          "teamId": 200,
+          "championId": 36,
+          "win": true,
+          "kills": 8,
+          "deaths": 6,
+          "assists": 26,
+          "damage": 29612,
+          "damageTaken": 84030,
+          "gold": 15008,
+          "cs": 16,
+          "vision": 0,
+          "augments": [
+            2102,
+            1041,
+            1181,
+            1353
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3143,
+            3111,
+            3084,
+            3065,
+            2051,
+            1011,
+            220013
+          ]
+        },
+        {
+          "nickname": "烦死了我不想打了",
+          "teamId": 200,
+          "championId": 24,
+          "win": true,
+          "kills": 17,
+          "deaths": 9,
+          "assists": 20,
+          "damage": 37208,
+          "damageTaken": 38480,
+          "gold": 16451,
+          "cs": 72,
+          "vision": 0,
+          "augments": [
+            3049,
+            1332,
+            1170,
+            2132
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3143,
+            3075,
+            6665,
+            1031,
+            3110,
+            3008,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 0,
+          "inhibitorKills": 0,
+          "firstBlood": true,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        },
+        {
+          "teamId": 200,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 1,
+          "firstBlood": false,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        }
+      ]
+    },
+    {
+      "gameId": 901121143827,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 200,
+          "championId": 777,
+          "win": true,
+          "kills": 2,
+          "deaths": 14,
+          "assists": 33,
+          "damage": 49150,
+          "damageTaken": 31239,
+          "gold": 16282,
+          "cs": 41,
+          "vision": 0,
+          "augments": [
+            1058,
+            1092,
+            1384,
+            2157,
+            1077
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3153,
+            0,
+            6333,
+            3031,
+            3006,
+            123430,
+            220013
+          ]
+        },
+        {
+          "nickname": "烦死了我不想打了",
+          "teamId": 200,
+          "championId": 120,
+          "win": true,
+          "kills": 16,
+          "deaths": 15,
+          "assists": 33,
+          "damage": 103718,
+          "damageTaken": 73448,
+          "gold": 17982,
+          "cs": 63,
+          "vision": 0,
+          "augments": [
+            2141,
+            2140,
+            1333,
+            1029,
+            3055
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            226668,
+            3042,
+            3008,
+            3177,
+            6333,
+            1036,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 2,
+          "firstBlood": true,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        },
+        {
+          "teamId": 200,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 2,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        }
+      ]
+    },
+    {
+      "gameId": 901121170557,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 200,
+          "championId": 81,
+          "win": false,
+          "kills": 17,
+          "deaths": 13,
+          "assists": 39,
+          "damage": 51009,
+          "damageTaken": 46793,
+          "gold": 22286,
+          "cs": 57,
+          "vision": 0,
+          "augments": [
+            3123,
+            1047,
+            1056,
+            1007,
+            1133
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3042,
+            3008,
+            3040,
+            4645,
+            3089,
+            3135,
+            220013
+          ]
+        },
+        {
+          "nickname": "烦死了我不想打了",
+          "teamId": 200,
+          "championId": 412,
+          "win": false,
+          "kills": 11,
+          "deaths": 11,
+          "assists": 52,
+          "damage": 36118,
+          "damageTaken": 49990,
+          "gold": 21776,
+          "cs": 49,
+          "vision": 0,
+          "augments": [
+            2100,
+            1056,
+            1403,
+            2018,
+            1151
+          ],
+          "penta": 0,
+          "quadra": 1,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3121,
+            3111,
+            6665,
+            2504,
+            8020,
+            3075,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 3,
+          "firstBlood": true,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        },
+        {
+          "teamId": 200,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 2,
+          "inhibitorKills": 1,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        }
+      ]
+    },
+    {
+      "gameId": 901121181685,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 200,
+          "championId": 887,
+          "win": false,
+          "kills": 16,
+          "deaths": 14,
+          "assists": 15,
+          "damage": 32986,
+          "damageTaken": 48073,
+          "gold": 15872,
+          "cs": 26,
+          "vision": 0,
+          "augments": [
+            1079,
+            3081,
+            3150,
+            1170
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            4645,
+            2421,
+            3089,
+            4633,
+            2510,
+            3008,
+            220013
+          ]
+        },
+        {
+          "nickname": "烦死了我不想打了",
+          "teamId": 200,
+          "championId": 114,
+          "win": false,
+          "kills": 9,
+          "deaths": 11,
+          "assists": 25,
+          "damage": 33908,
+          "damageTaken": 33737,
+          "gold": 13470,
+          "cs": 43,
+          "vision": 0,
+          "augments": [
+            2141,
+            3049,
+            1238,
+            1333
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            226668,
+            1031,
+            1031,
+            3008,
+            1031,
+            3143,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 1,
+          "firstBlood": true,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        },
+        {
+          "teamId": 200,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 1,
+          "inhibitorKills": 0,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        }
+      ]
+    },
+    {
+      "gameId": 901121213191,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 200,
+          "championId": 82,
+          "win": false,
+          "kills": 9,
+          "deaths": 13,
+          "assists": 21,
+          "damage": 32429,
+          "damageTaken": 39967,
+          "gold": 13537,
+          "cs": 23,
+          "vision": 0,
+          "augments": [
+            1001,
+            1335,
+            1079,
+            1205
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            4633,
+            8010,
+            3008,
+            6665,
+            3916,
+            3147,
+            220013
+          ]
+        },
+        {
+          "nickname": "烦死了我不想打了",
+          "teamId": 200,
+          "championId": 555,
+          "win": false,
+          "kills": 5,
+          "deaths": 10,
+          "assists": 19,
+          "damage": 13955,
+          "damageTaken": 24705,
+          "gold": 11479,
+          "cs": 12,
+          "vision": 0,
+          "augments": [
+            1041,
+            1053,
+            1402,
+            1007
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3142,
+            126697,
+            3158,
+            6696,
+            3035,
+            1036,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 1,
+          "firstBlood": true,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        },
+        {
+          "teamId": 200,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 1,
+          "inhibitorKills": 0,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        }
+      ]
+    },
+    {
+      "gameId": 901121230029,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 100,
+          "championId": 777,
+          "win": true,
+          "kills": 10,
+          "deaths": 13,
+          "assists": 12,
+          "damage": 24385,
+          "damageTaken": 28556,
+          "gold": 16644,
+          "cs": 70,
+          "vision": 0,
+          "augments": [
+            1328,
+            1022,
+            3018,
+            1384
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3031,
+            3139,
+            3008,
+            3046,
+            2019,
+            3032,
+            220013
+          ]
+        },
+        {
+          "nickname": "烦死了我不想打了",
+          "teamId": 100,
+          "championId": 11,
+          "win": true,
+          "kills": 15,
+          "deaths": 14,
+          "assists": 17,
+          "damage": 35821,
+          "damageTaken": 30983,
+          "gold": 14884,
+          "cs": 21,
+          "vision": 0,
+          "augments": [
+            1068,
+            2009,
+            1058,
+            3004
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3153,
+            3508,
+            2517,
+            3111,
+            3133,
+            2019,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 1,
+          "firstBlood": false,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        },
+        {
+          "teamId": 200,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 0,
+          "inhibitorKills": 0,
+          "firstBlood": true,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        }
+      ]
+    },
+    {
+      "gameId": 901121210548,
+      "rows": [
+        {
+          "nickname": "烦死了我不想打了",
+          "teamId": 100,
+          "championId": 67,
+          "win": true,
+          "kills": 10,
+          "deaths": 5,
+          "assists": 13,
+          "damage": 13557,
+          "damageTaken": 8261,
+          "gold": 8600,
+          "cs": 19,
+          "vision": 0,
+          "augments": [
+            3176,
+            3170,
+            1048,
+            2009,
+            3086
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3508,
+            3031,
+            6670,
+            1001,
+            0,
+            0,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 2,
+          "inhibitorKills": 1,
+          "firstBlood": true,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        },
+        {
+          "teamId": 200,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 0,
+          "inhibitorKills": 0,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        }
+      ]
+    },
+    {
+      "gameId": 901121809205,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 200,
+          "championId": 805,
+          "win": true,
+          "kills": 21,
+          "deaths": 8,
+          "assists": 14,
+          "damage": 30621,
+          "damageTaken": 26830,
+          "gold": 15302,
+          "cs": 40,
+          "vision": 0,
+          "augments": [
+            3078,
+            1004,
+            2026
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": true,
+          "officialScore": 0,
+          "items": [
+            0,
+            4645,
+            3137,
+            3008,
+            4646,
+            3100,
+            220013
+          ]
+        },
+        {
+          "nickname": "蹦么儿",
+          "teamId": 200,
+          "championId": 164,
+          "win": true,
+          "kills": 7,
+          "deaths": 8,
+          "assists": 18,
+          "damage": 20313,
+          "damageTaken": 32237,
+          "gold": 12237,
+          "cs": 25,
+          "vision": 0,
+          "augments": [
+            1996,
+            1243,
+            2088
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3074,
+            6610,
+            3111,
+            3078,
+            0,
+            0,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 0,
+          "inhibitorKills": 0,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        },
+        {
+          "teamId": 200,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 1,
+          "firstBlood": true,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        }
+      ]
+    },
+    {
+      "gameId": 901121794892,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 100,
+          "championId": 84,
+          "win": false,
+          "kills": 22,
+          "deaths": 14,
+          "assists": 22,
+          "damage": 60283,
+          "damageTaken": 47756,
+          "gold": 20418,
+          "cs": 34,
+          "vision": 0,
+          "augments": [
+            3176,
+            3172,
+            1194,
+            1996,
+            1205,
+            3118
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3135,
+            3146,
+            3089,
+            3008,
+            3100,
+            4645,
+            220013
+          ]
+        },
+        {
+          "nickname": "蹦么儿",
+          "teamId": 100,
+          "championId": 45,
+          "win": false,
+          "kills": 6,
+          "deaths": 11,
+          "assists": 29,
+          "damage": 34187,
+          "damageTaken": 26595,
+          "gold": 16576,
+          "cs": 28,
+          "vision": 0,
+          "augments": [
+            3176,
+            3170,
+            2054,
+            3118,
+            2073,
+            3086
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3118,
+            3020,
+            4645,
+            3089,
+            3135,
+            6653,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 3,
+          "inhibitorKills": 1,
+          "firstBlood": false,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        },
+        {
+          "teamId": 200,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 2,
+          "firstBlood": true,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        }
+      ]
+    },
+    {
+      "gameId": 901121871198,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 200,
+          "championId": 21,
+          "win": true,
+          "kills": 12,
+          "deaths": 6,
+          "assists": 23,
+          "damage": 27248,
+          "damageTaken": 19370,
+          "gold": 14996,
+          "cs": 59,
+          "vision": 0,
+          "augments": [
+            1115,
+            1092,
+            2009
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3031,
+            3033,
+            1001,
+            1053,
+            6676,
+            1038,
+            220013
+          ]
+        },
+        {
+          "nickname": "蹦么儿",
+          "teamId": 200,
+          "championId": 223,
+          "win": true,
+          "kills": 8,
+          "deaths": 6,
+          "assists": 22,
+          "damage": 24627,
+          "damageTaken": 54523,
+          "gold": 13293,
+          "cs": 6,
+          "vision": 0,
+          "augments": [
+            1154,
+            3081,
+            1097
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": true,
+          "officialScore": 0,
+          "items": [
+            3084,
+            3111,
+            3083,
+            3057,
+            994403,
+            1026,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 0,
+          "inhibitorKills": 0,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        },
+        {
+          "teamId": 200,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 1,
+          "firstBlood": true,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        }
+      ]
+    },
+    {
+      "gameId": 901122107094,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 200,
+          "championId": 84,
+          "win": true,
+          "kills": 19,
+          "deaths": 10,
+          "assists": 23,
+          "damage": 54008,
+          "damageTaken": 40484,
+          "gold": 17136,
+          "cs": 27,
+          "vision": 0,
+          "augments": [
+            3081,
+            1205,
+            2132,
+            1129
+          ],
+          "penta": 0,
+          "quadra": 1,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            4645,
+            3146,
+            3089,
+            3135,
+            3111,
+            3147,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 0,
+          "inhibitorKills": 0,
+          "firstBlood": true,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        },
+        {
+          "teamId": 200,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 1,
+          "firstBlood": false,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        }
+      ]
+    },
+    {
+      "gameId": 901122104731,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 100,
+          "championId": 81,
+          "win": true,
+          "kills": 16,
+          "deaths": 5,
+          "assists": 12,
+          "damage": 31199,
+          "damageTaken": 14428,
+          "gold": 14346,
+          "cs": 60,
+          "vision": 0,
+          "augments": [
+            1030,
+            1038,
+            1097
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3042,
+            3118,
+            3008,
+            4645,
+            1058,
+            0,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 1,
+          "firstBlood": true,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        },
+        {
+          "teamId": 200,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 0,
+          "inhibitorKills": 0,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        }
+      ]
+    },
+    {
+      "gameId": 901122161074,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 100,
+          "championId": 39,
+          "win": true,
+          "kills": 0,
+          "deaths": 0,
+          "assists": 0,
+          "damage": 169,
+          "damageTaken": 582,
+          "gold": 1958,
+          "cs": 9,
+          "vision": 0,
+          "augments": [
+            1088
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            1026,
+            1052,
+            0,
+            0,
+            0,
+            0,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 0,
+          "inhibitorKills": 0,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        },
+        {
+          "teamId": 200,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 0,
+          "inhibitorKills": 0,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        }
+      ]
+    },
+    {
+      "gameId": 901122164039,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 100,
+          "championId": 81,
+          "win": false,
+          "kills": 24,
+          "deaths": 12,
+          "assists": 27,
+          "damage": 54785,
+          "damageTaken": 36827,
+          "gold": 22531,
+          "cs": 63,
+          "vision": 0,
+          "augments": [
+            3086,
+            1237,
+            1329,
+            3123
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            3008,
+            3146,
+            3137,
+            4645,
+            3118,
+            3042,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 1,
+          "inhibitorKills": 0,
+          "firstBlood": false,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        },
+        {
+          "teamId": 200,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 4,
+          "inhibitorKills": 2,
+          "firstBlood": true,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        }
+      ]
+    },
+    {
+      "gameId": 901122160653,
+      "rows": [
+        {
+          "nickname": "成都夺冠",
+          "teamId": 100,
+          "championId": 42,
+          "win": false,
+          "kills": 10,
+          "deaths": 12,
+          "assists": 15,
+          "damage": 25418,
+          "damageTaken": 18596,
+          "gold": 12119,
+          "cs": 37,
+          "vision": 0,
+          "augments": [
+            3176,
+            3170,
+            1329,
+            1038,
+            3123
+          ],
+          "penta": 0,
+          "quadra": 0,
+          "firstBlood": false,
+          "officialScore": 0,
+          "items": [
+            1001,
+            1018,
+            3035,
+            3031,
+            2523,
+            3508,
+            220013
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 100,
+          "win": false,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 0,
+          "inhibitorKills": 0,
+          "firstBlood": true,
+          "firstTower": false,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": false
+        },
+        {
+          "teamId": 200,
+          "win": true,
+          "bans": [],
+          "baronKills": 0,
+          "dragonKills": 0,
+          "riftHeraldKills": 0,
+          "hordeKills": 0,
+          "vilemawKills": 0,
+          "towerKills": 3,
+          "inhibitorKills": 2,
+          "firstBlood": false,
+          "firstTower": true,
+          "firstBaron": false,
+          "firstDragon": false,
+          "firstInhibitor": true
+        }
+      ]
+    }
+  ]
+}
