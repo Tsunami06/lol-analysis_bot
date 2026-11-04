@@ -16,6 +16,7 @@ import { resolvePlayers, collectWindow, statOf, teamsOf } from './collect.mjs';
 import { analyze, modeOf } from './analyze.mjs';
 import { renderReport } from './report.mjs';
 import { sendToWechat } from './publish.mjs';
+import { buildFacts, carryScore, renderStory, loadGameData, loadAssets } from './story.mjs';
 
 const CN = 8 * 3600 * 1000;
 const STATE_FILE = path.join(ROOT, 'data', 'state.json');
@@ -252,6 +253,56 @@ async function inspect(gameIdArg) {
   console.log(`原始 payload（全部 118 个字段）：${rawFile}`);
 }
 
+/**
+ * 悲情英雄尽力局文案
+ *   node src/index.mjs story 901121026061 --player "急了就点一下赞" --tone 4
+ *   node src/index.mjs story 901121026061            # 自动挑尽力局指数最高的人
+ */
+async function story(gameIdArg) {
+  const gameId = Number(gameIdArg);
+  if (!gameId) throw new Error('用法：node src/index.mjs story <gameId> [--player 名字] [--tone 1-5] [--out 文件] [--json]');
+
+  const dataDir = path.join(ROOT, 'data', 'pull');
+  const { game, timeline } = loadGameData(dataDir, gameId);
+  const assets = loadAssets(dataDir);
+
+  const playerKey = typeof opt('player') === 'string' ? opt('player') : null;
+  const tone = Number(opt('tone', 3)) || 3;
+
+  let facts;
+  let score;
+  if (playerKey) {
+    facts = buildFacts(game, timeline, playerKey, assets);
+    score = carryScore(facts);
+  } else {
+    let best = null;
+    for (const it of game.participantIdentities ?? []) {
+      const f = buildFacts(game, timeline, it.player.puuid, assets);
+      const s = carryScore(f);
+      if (!best || s > best.score) best = { facts: f, score: s };
+    }
+    facts = best.facts;
+    score = best.score;
+  }
+
+  if (flag('json')) {
+    console.log(JSON.stringify({ score, facts }, null, 2));
+    return;
+  }
+
+  const text = renderStory(facts, { tone });
+  console.log(`尽力局指数：${score}/100　${facts.player.name} ${facts.player.champion} ${facts.player.k}/${facts.player.deaths}/${facts.player.assists}（${facts.win ? '胜' : '负'}）`);
+  console.log('');
+  console.log(text);
+
+  const out = typeof opt('out') === 'string' ? opt('out') : null;
+  if (out) {
+    fs.mkdirSync(path.dirname(out), { recursive: true });
+    fs.writeFileSync(out, text + '\n');
+    console.log(`\n已写入 ${out}`);
+  }
+}
+
 function minutesOf(hhmm) {
   const [h, m] = String(hhmm).split(':').map(Number);
   return h * 60 + m;
@@ -294,7 +345,7 @@ async function daemon() {
   setInterval(tick, 30_000);
 }
 
-(mode === 'daemon' ? daemon() : mode === 'probe' ? probe() : mode === 'game' ? inspect(argv[1]) : runOnce({
+(mode === 'daemon' ? daemon() : mode === 'probe' ? probe() : mode === 'game' ? inspect(argv[1]) : mode === 'story' ? story(argv[1]) : runOnce({
   dateLabel: typeof opt('date') === 'string' ? opt('date') : undefined,
   dryRun: flag('dry-run'),
   force: flag('force'),

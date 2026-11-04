@@ -3,6 +3,8 @@ fixtures/
 # data/ 采集数据与战报纳入版本库，不再忽略
 config/players.json
 config/config.json
+data/state.json
+data/tmp/
 .tmp/
 *.log
 .DS_Store

@@ -11,6 +11,8 @@
     "p0": "node scripts/p0-lcu-spike.mjs",
     "selftest": "node scripts/p0-lcu-spike.mjs --selftest",
     "probe": "node src/index.mjs probe",
+    "story": "node src/index.mjs story",
+    "test": "node tests/story.test.mjs",
     "once": "node src/index.mjs once",
     "dry": "node src/index.mjs once --dry-run",
     "daemon": "node src/index.mjs daemon"
